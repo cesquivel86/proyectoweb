@@ -1,0 +1,30 @@
+<zk>
+    <window  width="600px" vflex="1" apply="org.example.controllers.MyController">
+        <vlayout>
+            <hbox align="center" hflex="1">
+                Log message: <textbox  id="keywordBox"/>
+                <button label="add" id="addButton" />
+            </hbox>
+            <listbox  id="logListbox" rows="10">
+                <listhead>
+                    <listheader hflex="min" />
+                    <listheader hflex="min" />
+                    <listheader />
+                </listhead>
+                <template name="model">
+                    <listitem>
+                        <listcell>
+                            <button label="delete"  />
+                        </listcell>
+                        <listcell>
+                            <label  />
+                        </listcell>
+                        <listcell>
+                            <label  />
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+        </vlayout>
+    </window>
+</zk>
