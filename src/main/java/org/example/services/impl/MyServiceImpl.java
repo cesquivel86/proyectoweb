@@ -1,5 +1,6 @@
 package org.example.services.impl;
 
+import org.example.dao.LogDao;
 import org.example.entity.Log;
 import org.example.services.MyService;
 import java.util.List;
@@ -13,9 +14,14 @@ import org.springframework.stereotype.Service;
 public class MyServiceImpl implements MyService {
 
 	@Autowired
-	LogDao dao;
+    LogDao dao;
 
 	public Log addLog(Log log) {
+		return dao.save(log);
+	}
+
+	@Override
+	public Log updateLog(Log log) {
 		return dao.save(log);
 	}
 

@@ -21,6 +21,9 @@ public class Log implements Serializable, Cloneable {
 	@Column(nullable = false)
 	String message;
 
+	@Column
+	String otroMensaje;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	Date date;
 
@@ -54,6 +57,14 @@ public class Log implements Serializable, Cloneable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getOtroMensaje() {
+		return otroMensaje;
+	}
+
+	public void setOtroMensaje(String otroMensaje) {
+		this.otroMensaje = otroMensaje;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package org.example.services.impl;
+package org.example.dao;
 
 import org.example.entity.Log;
 import java.util.List;

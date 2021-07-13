@@ -22,7 +22,7 @@ import org.zkoss.zul.ext.Selectable;
 public class SearchController extends SelectorComposer<Component> {
 
     private static final long serialVersionUID = 1L;
-
+//Wire es una anotación de ZK para enlazar objetos de la vista en el controlador
     @Wire
     private Textbox keywordBox;
     @Wire

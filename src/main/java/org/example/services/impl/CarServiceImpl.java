@@ -99,7 +99,9 @@ public class CarServiceImpl implements CarService {
 	}
 	
 	public List<Car> search(String keyword){
+		// Crea una lista vacía de coches
 		List<Car> result = new LinkedList<Car>();
+
 		if (keyword==null || "".equals(keyword)){
 			result = carList;
 		}else{

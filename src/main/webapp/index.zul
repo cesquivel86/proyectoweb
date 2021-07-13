@@ -1,14 +1,14 @@
 <zk>
 	<window apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm')@init('org.example.MyViewModel')"
-		validationMessages="@id('vmsgs')" width="600px" vflex="1">
+		validationMessages="@id('vmsgs')"  vflex="1">
 		<vlayout>
 			<hbox align="center" hflex="1">
 				Log message: <textbox value="@save(vm.message)"
 					onOK="@command('addLog')" hflex="1" placeholder="What happened?" />
 				<button label="add" onClick="@command('addLog')" />
 			</hbox>
-			<button label="otro boton"></button>
+
 			<listbox model="@bind(vm.logListModel)" rows="10">
 				<listhead>
 					<listheader hflex="min" />
@@ -19,12 +19,17 @@
 					<listitem>
 						<listcell>
 							<button label="delete" onClick="@command('deleteLog', log=each)" />
+							<button label="edit" onClick="@command('edit')"></button>
 						</listcell>
 						<listcell>
 							<label value="@bind(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
 						</listcell>
-						<listcell>
+						<listcell visible="@bind(not vm.editable)">
 							<label value="@bind(each.message)" />
+						</listcell>
+						<listcell visible="@bind(vm.editable)">
+							<textbox value="@bind(each.message)"
+									 onOK="@command('updateLog')" hflex="1"  />
 						</listcell>
 					</listitem>
 				</template>

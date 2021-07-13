@@ -21,6 +21,7 @@ public class MyViewModel {
 	private MyService myService;
 	private ListModelList<Log> logListModel;
 	private String message;
+	private boolean editable=false;
 
 	@Init
 	public void init() {
@@ -44,6 +45,14 @@ public class MyViewModel {
 		this.message = message;
 	}
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 	@Command
 	public void addLog() {
 		if(Strings.isBlank(message)) {
@@ -58,6 +67,17 @@ public class MyViewModel {
 	public void deleteLog(@BindingParam("log") Log log) {
 		myService.deleteLog(log);
 		logListModel.remove(log);
+	}
+
+	@Command
+	public void updateLog(@BindingParam("log") Log log) {
+		myService.updateLog(log);
+
+	}
+
+	@Command
+	public void edit() {
+		this.setEditable(!this.isEditable());
 	}
 
 }

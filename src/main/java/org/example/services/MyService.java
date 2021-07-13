@@ -7,6 +7,8 @@ public interface MyService {
 
 	Log addLog(Log log);
 
+	Log updateLog(Log log);
+
 	List<Log> getLogs();
 
 	void deleteLog(Log log);
