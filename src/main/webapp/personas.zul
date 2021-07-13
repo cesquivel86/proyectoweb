@@ -1,3 +1,19 @@
-<window title="miVentanita" width="300px" height="300">
+<window title="Personas" width="600px" height="600px">
+    <hbox>
+        <label value="nombre"></label>
+        <textbox id="nombreTb"></textbox>
+    </hbox>
 
+    <hbox>
+        <label value="apellidos"></label>
+        <textbox id="apellidosTb" ></textbox>
+    </hbox>
+
+    <hbox>
+        <label value="fecha de nacimiento"></label>
+        <datebox id="fechaNacDb"></datebox>
+    </hbox>
+    <hbox>
+        <button id="guadarBtn" label="Guardar"></button>
+    </hbox>
 </window>
