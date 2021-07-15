@@ -1,19 +1,22 @@
-<window title="Personas" width="600px" height="600px">
-    <hbox>
-        <label value="nombre"></label>
-        <textbox id="nombreTb"></textbox>
-    </hbox>
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <window title="Personas" width="600px" height="600px" apply="org.example.controllers.PersonaController">
+        <hbox>
+            <label value="nombre"></label>
+            <textbox id="nombreTb"></textbox>
+        </hbox>
 
-    <hbox>
-        <label value="apellidos"></label>
-        <textbox id="apellidosTb" ></textbox>
-    </hbox>
+        <hbox>
+            <label value="apellidos"></label>
+            <textbox id="apellidosTb" ></textbox>
+        </hbox>
 
-    <hbox>
-        <label value="fecha de nacimiento"></label>
-        <datebox id="fechaNacDb"></datebox>
-    </hbox>
-    <hbox>
-        <button id="guadarBtn" label="Guardar"></button>
-    </hbox>
-</window>
+        <hbox>
+            <label value="fecha de nacimiento"></label>
+            <datebox id="fechaNacDb"></datebox>
+        </hbox>
+        <hbox>
+            <button id="guadarBtn" label="Guardar"></button>
+        </hbox>
+    </window>
+</zk>

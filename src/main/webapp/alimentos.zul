@@ -1,0 +1,46 @@
+<div >
+    <label value="Categoría"></label>
+    <combobox ></combobox>
+    <style src="/widgets/grid/data_filter/style.css" />
+    <grid  height="400px">
+        <auxhead sclass="category-center">
+            <auxheader label="Alimentos Saludables" colspan="6" />
+        </auxhead>
+        <auxhead sclass="category-center">
+            <auxheader colspan="1">
+                <span sclass="z-icon-filter"/>
+                <textbox instant="true" width="100px"/>
+            </auxheader>
+            <auxheader colspan="1">
+                <span sclass="z-icon-filter"/>
+                <textbox instant="true" width="100px"/>
+            </auxheader>
+            <auxheader colspan="1">
+                <span sclass="z-icon-filter"/>
+                <textbox instant="true" width="100px"/>
+            </auxheader>
+            <auxheader label="Detalle de los Alimentos" colspan="3" />
+        </auxhead>
+        <columns>
+            <column width="20%">Categoría</column>
+            <column width="20%">Nombre</column>
+            <column width="20%">Nutrientes</column>
+            <column width="10%">% Diario</column>
+            <column width="10%">Calorias</column>
+            <column width="20%">Cantidad</column>
+        </columns>
+        <template name="model">
+            <row>
+                <label value="@load(each.categoria)" />
+                <label value="@load(each.nombre)" />
+                <label value="@load(each.nutrientes)" />
+                <label value="@load(each.porcentajeDiario)" />
+                <label value="@load(each.calorias)" />
+                <label value="@load(each.cantidad)" />
+            </row>
+        </template>
+        <foot>
+            <footer span="6" class="footer_right" label="aquí pondremos el número de items encontrados" />
+        </foot>
+    </grid>
+</div>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("myPersonaService")
+@Service("personaService")
 @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class PersonaServiceImpl implements PersonaService{
 
@@ -18,7 +18,7 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public Persona guadarPersona(Persona p) {
-        return null;
+        return dao.guardar(p);
     }
 
     @Override
