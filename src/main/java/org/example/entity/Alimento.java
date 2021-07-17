@@ -25,6 +25,14 @@ public class Alimento {
         return categoria;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }

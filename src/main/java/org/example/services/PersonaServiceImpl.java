@@ -1,5 +1,6 @@
 package org.example.services;
 
+import org.example.dao.AlimentoDAO;
 import org.example.dao.PersonaDAO;
 import org.example.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;

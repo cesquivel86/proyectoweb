@@ -12,8 +12,6 @@
  
  	<context:component-scan base-package="org.example" />
 
-	<context:component-scan base-package="org.example">
-	</context:component-scan>
 
 
 	<bean
@@ -30,6 +28,6 @@
 	</bean>
 
 	<bean id="personaService" class="org.example.services.PersonaServiceImpl" />
-
+	<bean id="alimentoService" class="org.example.services.AlimentoServiceImpl" />
 	<tx:annotation-driven />
 </beans>
