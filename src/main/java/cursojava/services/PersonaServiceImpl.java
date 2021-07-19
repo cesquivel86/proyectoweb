@@ -1,8 +1,7 @@
-package org.example.services;
+package cursojava.services;
 
-import org.example.dao.AlimentoDAO;
-import org.example.dao.PersonaDAO;
-import org.example.entity.Persona;
+import cursojava.dao.PersonaDAO;
+import cursojava.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

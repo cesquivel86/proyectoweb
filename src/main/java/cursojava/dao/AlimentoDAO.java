@@ -1,6 +1,7 @@
-package org.example.dao;
+package cursojava.dao;
 
-import org.example.entity.Alimento;
+import cursojava.entity.Categoria;
+import cursojava.entity.Alimento;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +18,21 @@ public class AlimentoDAO {
 
     @Transactional(readOnly = true)
     public List<Alimento> queryAll() {
-        Query query = em.createQuery("SELECT a FROM Alimento a");
-        List<Alimento> result = query.getResultList();
-        return result;
+        List<Alimento> result=null;
+        try {
+            Query query = em.createQuery("SELECT a FROM Alimento a");
+            result = query.getResultList();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            return result;
+        }
     }
 
     @Transactional(readOnly = true)
-    public List<Alimento> getByCategory(String category) {
-        Query query = em.createQuery("SELECT a FROM Alimento a WHERE a.categoria="+category);
+    public List<Alimento> getByCategory(Categoria category) {
+        Query query = em.createQuery("SELECT a FROM Alimento a WHERE a.categoria.id="+category.getId());
         List<Alimento> result = query.getResultList();
         return result;
     }

@@ -1,6 +1,7 @@
-package org.example.services;
+package cursojava.services;
 
-import org.example.entity.Log;
+import cursojava.entity.Log;
+
 import java.util.List;
 
 public interface MyService {

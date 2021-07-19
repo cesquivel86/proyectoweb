@@ -1,5 +1,5 @@
 <zk>
-    <window  width="600px" vflex="1" apply="org.example.controllers.MyController">
+    <window  width="600px" vflex="1" apply="cursojava.controllers.MyController">
         <vlayout>
             <hbox align="center" hflex="1">
                 Log message: <textbox  id="keywordBox"/>

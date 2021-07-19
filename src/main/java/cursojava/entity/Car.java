@@ -1,4 +1,4 @@
-package org.example.entity;
+package cursojava.entity;
 
 public class Car {
 

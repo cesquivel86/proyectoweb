@@ -1,4 +1,4 @@
-package org.example.entity;
+package cursojava.entity;
 
 import java.io.Serializable;
 import java.util.Date;

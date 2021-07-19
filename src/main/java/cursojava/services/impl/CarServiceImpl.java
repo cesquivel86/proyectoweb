@@ -1,7 +1,7 @@
-package org.example.services.impl;
+package cursojava.services.impl;
 
-import org.example.entity.Car;
-import org.example.services.CarService;
+import cursojava.services.CarService;
+import cursojava.entity.Car;
 
 import java.util.LinkedList;
 import java.util.List;

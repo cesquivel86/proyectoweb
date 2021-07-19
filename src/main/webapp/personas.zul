@@ -1,6 +1,6 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-    <window title="Personas" width="600px" height="600px" apply="org.example.controllers.PersonaController">
+    <window title="Personas" width="600px" height="600px" apply="cursojava.controllers.PersonaController">
         <hbox>
             <label value="nombre"></label>
             <textbox id="nombreTb"></textbox>

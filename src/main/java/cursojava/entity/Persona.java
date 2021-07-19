@@ -1,4 +1,4 @@
-package org.example.entity;
+package cursojava.entity;
 
 
 import javax.persistence.*;

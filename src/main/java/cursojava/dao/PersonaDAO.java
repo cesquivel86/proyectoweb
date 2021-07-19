@@ -1,6 +1,6 @@
-package org.example.dao;
+package cursojava.dao;
 
-import org.example.entity.Persona;
+import cursojava.entity.Persona;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

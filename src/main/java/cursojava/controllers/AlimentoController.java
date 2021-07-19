@@ -1,7 +1,8 @@
-package org.example.controllers;
+package cursojava.controllers;
 
-import org.example.entity.Alimento;
-import org.example.services.AlimentoService;import org.zkoss.zk.ui.Component;
+import cursojava.entity.Categoria;
+import cursojava.entity.Alimento;
+import cursojava.services.AlimentoService;import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -34,7 +35,7 @@ public class AlimentoController extends SelectorComposer<Component> {
 
     private int segundos=0;
 
-    ArrayList<Alimento> todosLosAlimentos;
+    List<Alimento> todosLosAlimentos;
 
     public void doAfterCompose(Component comp) throws Exception {
         try{
@@ -45,11 +46,14 @@ public class AlimentoController extends SelectorComposer<Component> {
             alimentosGrid.setModel(modelo);
             System.out.println("bean cargado");
 
-            List<String> categorias = alimentoService.obtenerCategorias(todosLosAlimentos);
-            categoriaCb.appendItem("Todas");
-            for(String categoria:categorias){
-                categoriaCb.appendItem(categoria);
-            }
+            List<Categoria> categorias = alimentoService.obtenerCategoriasPorBaseDeDatos();
+            ListModelList categoriasModel = new ListModelList();
+            Categoria c = new Categoria();
+            c.setNombre("Todos");
+            categoriasModel.add(c);
+            categoriasModel.addAll(categorias);
+            categoriaCb.setModel(categoriasModel);
+
         }catch(Exception e){
 
             e.printStackTrace();
@@ -82,23 +86,21 @@ public class AlimentoController extends SelectorComposer<Component> {
             System.out.println("El método no se está llamando desde un evento");
         }
 
-        List<Alimento> listaAlimentos =alimentoService.obtenerAlimentosFiltrados(categoria,nombre, nutrientes,todosLosAlimentos);
-        ListModelList<Alimento> modelo = new ListModelList<Alimento>(listaAlimentos);
+        List<Alimento>alimentosFiltrados =alimentoService.obtenerAlimentosFiltrados(categoria,nombre, nutrientes,todosLosAlimentos);
+        ListModelList<Alimento> modelo = new ListModelList<Alimento>(alimentosFiltrados);
         alimentosGrid.setModel(modelo);
     }
 
     @Listen("onSelect=#categoriaCb")
     public void seleccionarCategoria(){
         try {
-            String categoria = categoriaCb.getSelectedItem().getLabel();
-            if (categoria.equals("Todos")) {
+            if(categoriaCb.getSelectedIndex()==0) {
                 todosLosAlimentos = new ArrayList<Alimento>(alimentoService.obtenerTodos());
-                ListModelList<Alimento> modelo = new ListModelList<Alimento>(todosLosAlimentos);
-                alimentosGrid.setModel(modelo);
-            } else {
-                todosLosAlimentos = new ArrayList<Alimento>(alimentoService.obtenerPorCategoria(categoria));
-                this.filtrar(null);
+            }else {
+                Categoria categoria = (Categoria) categoriaCb.getModel().getElementAt(categoriaCb.getSelectedIndex());
+                todosLosAlimentos = alimentoService.obtenerPorCategoria(categoria);
             }
+            this.filtrar(null);
         }catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();

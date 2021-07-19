@@ -1,9 +1,8 @@
-package org.example;
+package cursojava;
 
-import org.example.entity.Log;
-import org.example.services.MyService;
+import cursojava.entity.Log;
+import cursojava.services.MyService;
 
-import java.util.Date;
 import java.util.List;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;

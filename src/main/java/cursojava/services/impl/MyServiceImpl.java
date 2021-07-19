@@ -1,8 +1,8 @@
-package org.example.services.impl;
+package cursojava.services.impl;
 
-import org.example.dao.LogDao;
-import org.example.entity.Log;
-import org.example.services.MyService;
+import cursojava.dao.LogDao;
+import cursojava.entity.Log;
+import cursojava.services.MyService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

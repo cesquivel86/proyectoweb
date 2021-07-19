@@ -1,4 +1,4 @@
-package org.example.entity;
+package cursojava.entity;
 
 import javax.persistence.*;
 
@@ -8,8 +8,8 @@ public class Alimento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
-    @Column
-    private String categoria;
+
+
     @Column
     private String nombre;
     @Column
@@ -21,9 +21,9 @@ public class Alimento {
     @Column
     private String cantidad;
 
-    public String getCategoria() {
-        return categoria;
-    }
+    @ManyToOne()
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     public Integer getId() {
         return id;
@@ -33,9 +33,6 @@ public class Alimento {
         this.id = id;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public String getNombre() {
         return nombre;
@@ -75,5 +72,13 @@ public class Alimento {
 
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

@@ -1,6 +1,7 @@
-package org.example.dao;
+package cursojava.dao;
 
-import org.example.entity.Log;
+import cursojava.entity.Log;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

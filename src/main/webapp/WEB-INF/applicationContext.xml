@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
  
- 	<context:component-scan base-package="org.example" />
+ 	<context:component-scan base-package="cursojava" />
 
 
 
@@ -27,7 +27,7 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="personaService" class="org.example.services.PersonaServiceImpl" />
-	<bean id="alimentoService" class="org.example.services.AlimentoServiceImpl" />
+	<bean id="personaService" class="cursojava.services.PersonaServiceImpl" />
+	<bean id="alimentoService" class="cursojava.services.AlimentoServiceImpl" />
 	<tx:annotation-driven />
 </beans>

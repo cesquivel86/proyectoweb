@@ -14,22 +14,25 @@
         <properties>
             <!--property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/-->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/logs"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/alimentos"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="hibernate.show_sql" value = "true" />
             <property name="hibernate.format_sql" value = "true" />
 
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
-            <!--
-            <property name="javax.persistence.query.timeout" value="99"/>
-            <property name="javax.persistence.lock.timeout" value="99"/>
-            <shared-cache-mode>ALL</shared-cache-mode>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-            <property name="javax.persistence.sql-load-script-source" value="table-records.sql" />
-            -->
+            <!--
+                     <property name="javax.persistence.schema-generation.database.action" value="create"/>
+
+                     <property name="javax.persistence.query.timeout" value="99"/>
+                     <property name="javax.persistence.lock.timeout" value="99"/>
+                     <shared-cache-mode>ALL</shared-cache-mode>
+
+                     <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+                     <property name="javax.persistence.sql-load-script-source" value="table-records.sql" />
+                     -->
         </properties>
 
     </persistence-unit>

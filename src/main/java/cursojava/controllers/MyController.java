@@ -1,21 +1,16 @@
-package org.example.controllers;
+package cursojava.controllers;
 
-import org.example.entity.Log;
-import org.example.services.MyService;
-import org.zkoss.bind.annotation.Command;
-import org.zkoss.lang.Strings;
+import cursojava.entity.Log;
+import cursojava.services.MyService;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.*;
-import org.zkoss.zul.ext.Selectable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 public class MyController extends SelectorComposer<Component> {
 

@@ -1,6 +1,10 @@
-<div id="componentePadre" apply="org.example.controllers.AlimentoController">
+<div id="componentePadre" apply="cursojava.controllers.AlimentoController">
     <label value="Categoría"></label>
-    <combobox id="categoriaCb" ></combobox>
+    <combobox id="categoriaCb" readonly="true">
+        <template name="model">
+            <comboitem label="${each.nombre}"></comboitem>
+        </template>
+    </combobox>
     <style src="/widgets/grid/data_filter/style.css" />
     <grid  id="alimentosGrid" height="400px">
         <auxhead sclass="category-center">
@@ -31,7 +35,7 @@
         </columns>
         <template name="model">
             <row>
-                <label value="${each.categoria}" />
+                <label value="${each.categoria.nombre}" />
                 <label value="${each.nombre}" />
                 <label value="${each.nutrientes}" />
                 <label value="${each.porcentajeDiario}" />
@@ -43,5 +47,5 @@
             <footer id="footer" span="6" class="footer_right" label="aquí pondremos el número de items encontrados" />
         </foot>
     </grid>
-    <timer id="segundero" delay="5000" repeats="true" ></timer>
+    <timer id="segundero" delay="5000" repeats="false" ></timer>
 </div>

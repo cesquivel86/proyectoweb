@@ -1,8 +1,8 @@
-package org.example.controllers;
+package cursojava.controllers;
 
 
-import org.example.entity.Persona;
-import org.example.services.PersonaService;
+import cursojava.entity.Persona;
+import cursojava.services.PersonaService;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;

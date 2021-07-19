@@ -1,6 +1,6 @@
-package org.example.services;
+package cursojava.services;
 
-import org.example.entity.Persona;
+import cursojava.entity.Persona;
 
 import java.util.List;
 

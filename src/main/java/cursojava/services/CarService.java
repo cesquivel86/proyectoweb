@@ -1,5 +1,5 @@
-package org.example.services;
-import org.example.entity.Car;
+package cursojava.services;
+import cursojava.entity.Car;
 
 import java.util.List;
 
