@@ -18,4 +18,6 @@ public interface AlimentoService {
     public List<Categoria> obtenerCategoriasPorBaseDeDatos();
 
     public void eliminarAlimentoDesdeTabla(Alimento a);
+
+    public Alimento guardarAlimento(Alimento a);
 }

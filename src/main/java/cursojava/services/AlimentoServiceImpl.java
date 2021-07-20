@@ -66,4 +66,9 @@ public class AlimentoServiceImpl implements AlimentoService{
     public void eliminarAlimentoDesdeTabla(Alimento a) {
         alimentoDao.delete(a);
     }
+
+    @Override
+    public Alimento guardarAlimento(Alimento a) {
+        return alimentoDao.save(a);
+    }
 }

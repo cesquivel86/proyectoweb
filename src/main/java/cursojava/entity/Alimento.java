@@ -32,7 +32,7 @@ public class Alimento {
     private Categoria categoria;
 
     @Column(nullable = false, columnDefinition="tinyint(1) default 0")
-    char deleted;
+    char deleted='0';
 
     public Integer getId() {
         return id;

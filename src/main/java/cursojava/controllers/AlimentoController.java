@@ -47,25 +47,38 @@ public class AlimentoController extends SelectorComposer<Component> {
         try{
             super.doAfterCompose(comp);
             alimentoService= (AlimentoService) SpringUtil.getBean("alimentoService");
+            System.out.println("bean cargado");
+
             todosLosAlimentos = new ArrayList<Alimento>(alimentoService.obtenerTodos());
             ListModelList<Alimento> modelo = new ListModelList<Alimento>(todosLosAlimentos);
             alimentosGrid.setModel(modelo);
-            System.out.println("bean cargado");
+
+
 
             alimentosGrid.setRowRenderer(new RowRenderer<Object>() {
                 @Override
                 public void render(Row row, Object objetoDeModelo, int i) throws Exception {
                     final Alimento a = (Alimento) objetoDeModelo;
-                    new Label(a.getCategoria().getNombre()).setParent(row);
-                    new Label(a.getNombre()).setParent(row);
+
+                    Label etiquetaCategoria = new Label();
+                    etiquetaCategoria.setValue(a.getCategoria().getNombre());
+                    etiquetaCategoria.setParent(row);
+
+                    Label etiquetaNombre = new Label();
+                    etiquetaNombre.setValue(a.getNombre());
+                    etiquetaNombre.setParent(row);
+
                     new Label(a.getNutrientes()).setParent(row);
                     new Label(a.getPorcentajeDiario().toString()).setParent(row);
                     new Label(a.getCalorias().toString()).setParent(row);
                     new Label(a.getCantidad()).setParent(row);
-                    Button eliminarBtn =new Button("Eliminar C");
+
+                    Button eliminarBtn =new Button("Eliminar");
+
                     eliminarBtn.addEventListener("onClick",new EventListener() {
                         @Override
                         public void onEvent(Event event) throws Exception {
+
                             Messagebox.show("¿está seguro que desea eliminar el Alimento?",
                                     "Question", Messagebox.OK | Messagebox.CANCEL,
                                     Messagebox.QUESTION,
@@ -161,9 +174,12 @@ public class AlimentoController extends SelectorComposer<Component> {
     public void showModal(Event e) {
         HashMap parametros = new HashMap<String, Object>();
         parametros.put("parametro", "este es mi parámetro");
+        parametros.put("listaDeAlimentos", todosLosAlimentos);
+        parametros.put("grid",alimentosGrid);
+
         //crea una nueva ventana a partir de un archivo .zul
         Window window = (Window) Executions.createComponents(
-                "/vistas/alimentos/nuevoAlimento.zul", null, null);
+                "/vistas/alimentos/nuevoAlimento.zul", null, parametros);
         window.doModal();
     }
 
