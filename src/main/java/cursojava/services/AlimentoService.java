@@ -16,4 +16,6 @@ public interface AlimentoService {
     public List<String> obtenerCategorias(List<Alimento> alimentos);
 
     public List<Categoria> obtenerCategoriasPorBaseDeDatos();
+
+    public void eliminarAlimentoDesdeTabla(Alimento a);
 }

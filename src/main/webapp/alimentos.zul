@@ -5,6 +5,7 @@
             <comboitem label="${each.nombre}"></comboitem>
         </template>
     </combobox>
+    <button id="nuevoAlimentoBtn" label="Nuevo Alimento"></button>
     <style src="/widgets/grid/data_filter/style.css" />
     <grid  id="alimentosGrid" height="400px">
         <auxhead sclass="category-center">
@@ -31,18 +32,10 @@
             <column width="20%">Nutrientes</column>
             <column width="10%">% Diario</column>
             <column width="10%">Calorias</column>
-            <column width="20%">Cantidad</column>
+            <column width="10%">Cantidad</column>
+            <column width="10%">Acciones</column>
         </columns>
-        <template name="model">
-            <row>
-                <label value="${each.categoria.nombre}" />
-                <label value="${each.nombre}" />
-                <label value="${each.nutrientes}" />
-                <label value="${each.porcentajeDiario}" />
-                <label value="${each.calorias}" />
-                <label value="${each.cantidad}" />
-            </row>
-        </template>
+
         <foot>
             <footer id="footer" span="6" class="footer_right" label="aquí pondremos el número de items encontrados" />
         </foot>

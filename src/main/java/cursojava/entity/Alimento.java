@@ -1,8 +1,14 @@
 package cursojava.entity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "alimento")
+@SQLDelete(sql = "UPDATE alimento SET deleted = '1' WHERE id = ?")
+@Where(clause = "deleted <> '1'")
 public class Alimento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,9 +27,12 @@ public class Alimento {
     @Column
     private String cantidad;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @Column(nullable = false, columnDefinition="tinyint(1) default 0")
+    char deleted;
 
     public Integer getId() {
         return id;
@@ -80,5 +89,13 @@ public class Alimento {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public char getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(char deleted) {
+        this.deleted = deleted;
     }
 }

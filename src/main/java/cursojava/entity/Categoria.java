@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "categoria")
-@SQLDelete(sql = "UPDATE packages SET deleted = '1' WHERE id = ?")
+@SQLDelete(sql = "UPDATE categoria SET deleted = '1' WHERE id = ?")
 @Where(clause = "deleted <> '1'")
 public class Categoria {
 

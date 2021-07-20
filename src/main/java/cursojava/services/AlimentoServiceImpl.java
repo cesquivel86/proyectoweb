@@ -61,4 +61,9 @@ public class AlimentoServiceImpl implements AlimentoService{
     public List<Categoria> obtenerCategoriasPorBaseDeDatos() {
         return categoriaDao.queryAll();
     }
+
+    @Override
+    public void eliminarAlimentoDesdeTabla(Alimento a) {
+        alimentoDao.delete(a);
+    }
 }

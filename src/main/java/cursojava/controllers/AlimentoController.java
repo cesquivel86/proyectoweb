@@ -2,7 +2,11 @@ package cursojava.controllers;
 
 import cursojava.entity.Categoria;
 import cursojava.entity.Alimento;
-import cursojava.services.AlimentoService;import org.zkoss.zk.ui.Component;
+import cursojava.services.AlimentoService;
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -12,6 +16,7 @@ import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AlimentoController extends SelectorComposer<Component> {
@@ -33,6 +38,7 @@ public class AlimentoController extends SelectorComposer<Component> {
     @Wire
     Div componentePadre;
 
+
     private int segundos=0;
 
     List<Alimento> todosLosAlimentos;
@@ -46,6 +52,46 @@ public class AlimentoController extends SelectorComposer<Component> {
             alimentosGrid.setModel(modelo);
             System.out.println("bean cargado");
 
+            alimentosGrid.setRowRenderer(new RowRenderer<Object>() {
+                @Override
+                public void render(Row row, Object objetoDeModelo, int i) throws Exception {
+                    final Alimento a = (Alimento) objetoDeModelo;
+                    new Label(a.getCategoria().getNombre()).setParent(row);
+                    new Label(a.getNombre()).setParent(row);
+                    new Label(a.getNutrientes()).setParent(row);
+                    new Label(a.getPorcentajeDiario().toString()).setParent(row);
+                    new Label(a.getCalorias().toString()).setParent(row);
+                    new Label(a.getCantidad()).setParent(row);
+                    Button eliminarBtn =new Button("Eliminar C");
+                    eliminarBtn.addEventListener("onClick",new EventListener() {
+                        @Override
+                        public void onEvent(Event event) throws Exception {
+                            Messagebox.show("¿está seguro que desea eliminar el Alimento?",
+                                    "Question", Messagebox.OK | Messagebox.CANCEL,
+                                    Messagebox.QUESTION,
+                                    new org.zkoss.zk.ui.event.EventListener(){
+                                        public void onEvent(Event e){
+                                            if(Messagebox.ON_OK.equals(e.getName())){
+                                                alimentoService.eliminarAlimentoDesdeTabla(a);
+                                                todosLosAlimentos.remove(a);
+                                                ListModelList<Alimento> modelo = new ListModelList<Alimento>(todosLosAlimentos);
+                                                alimentosGrid.setModel(modelo);
+                                            }else if(Messagebox.ON_CANCEL.equals(e.getName())){
+                                                System.out.println("evento cancelado");
+                                            }
+                                        }
+                                    }
+                            );
+
+
+                        }
+                    });
+
+
+                    eliminarBtn.setParent(row);
+                }
+            });
+
             List<Categoria> categorias = alimentoService.obtenerCategoriasPorBaseDeDatos();
             ListModelList categoriasModel = new ListModelList();
             Categoria c = new Categoria();
@@ -53,6 +99,8 @@ public class AlimentoController extends SelectorComposer<Component> {
             categoriasModel.add(c);
             categoriasModel.addAll(categorias);
             categoriaCb.setModel(categoriasModel);
+
+
 
         }catch(Exception e){
 
@@ -105,5 +153,36 @@ public class AlimentoController extends SelectorComposer<Component> {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+
+
+    }
+
+    @Listen("onClick = #nuevoAlimentoBtn")
+    public void showModal(Event e) {
+        HashMap parametros = new HashMap<String, Object>();
+        parametros.put("parametro", "este es mi parámetro");
+        //crea una nueva ventana a partir de un archivo .zul
+        Window window = (Window) Executions.createComponents(
+                "/vistas/alimentos/nuevoAlimento.zul", null, null);
+        window.doModal();
+    }
+
+    public void buscarBoton(List<Component> components){
+        for(Component c: components){
+            if(c instanceof Button){
+                System.out.println();
+                System.out.println("botón encontrado");
+                System.out.println();
+            }else{
+                System.out.println();
+                System.out.println("Componente encontrado");
+                System.out.println(c.getClass());
+                System.out.println();
+                if(c.getChildren()!=null){
+                    buscarBoton(c.getChildren());
+                }
+            }
+        }
+
     }
 }
