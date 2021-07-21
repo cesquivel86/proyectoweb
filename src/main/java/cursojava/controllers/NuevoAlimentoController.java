@@ -29,41 +29,69 @@ public class NuevoAlimentoController extends SelectorComposer<Component> {
     @Wire
     Textbox nNutrientesTb, nNombreTb,nCantidadTb;
 
+    @Wire
+    Button guardarBtn;
+
 
     HashMap<Object, Object> hmap = new HashMap<Object, Object>(Executions.getCurrent().getArg());
+
 
     Grid grid;
     List<Alimento> todosLosAlimentos;
 
+    Alimento alimentoAModificar=null;
+
     @Override
     public void doAfterCompose(Component window) throws Exception {
         super.doAfterCompose(window);
-        super.doAfterCompose(window);
+
         alimentoService= (AlimentoService) SpringUtil.getBean("alimentoService");
 
         List<Categoria> categorias = alimentoService.obtenerCategoriasPorBaseDeDatos();
         ListModelList categoriasModel = new ListModelList(categorias);
         categoriaCbModal.setModel(categoriasModel);
 
-        System.out.println(hmap.get("parametro").toString());
         grid= (Grid) hmap.get("grid");
         todosLosAlimentos= (List<Alimento>) hmap.get("listaDeAlimentos");
+        alimentoAModificar = (Alimento) hmap.get("alimento");
+
+        if(alimentoAModificar!=null){
+            categoriaCbModal.setValue(alimentoAModificar.getCategoria().getNombre());
+            nNombreTb.setValue(alimentoAModificar.getNombre());
+            nCantidadTb.setValue(alimentoAModificar.getCantidad());
+            nNutrientesTb.setValue(alimentoAModificar.getNutrientes());
+            guardarBtn.setLabel("Actualizar");
+        }
+
+
+
     }
     @Listen("onClick=#guardarBtn")
     public void guardarAlimento(){
-        Alimento alimento = new Alimento();
-        Categoria c = (Categoria) categoriaCbModal.getModel().getElementAt(categoriaCbModal.getSelectedIndex());
-        alimento.setCategoria(c);
-        alimento.setNombre(nNombreTb.getValue());
-        alimento.setNutrientes(nNutrientesTb.getValue());
-        alimento.setCantidad(nCantidadTb.getValue());
-        alimento.setDeleted('0');
+        //crear nuevo objeto
+        if(alimentoAModificar==null) {
+            alimentoAModificar = new Alimento();
+            todosLosAlimentos.add(alimentoAModificar);
+        }
 
-        alimentoService.guardarAlimento(alimento);
-        todosLosAlimentos.add(alimento);
+        // cargar Objeto
+        Categoria c = (Categoria) categoriaCbModal.getModel().getElementAt(categoriaCbModal.getSelectedIndex());
+        alimentoAModificar.setCategoria(c);
+        alimentoAModificar.setNombre(nNombreTb.getValue());
+        alimentoAModificar.setNutrientes(nNutrientesTb.getValue());
+        alimentoAModificar.setCantidad(nCantidadTb.getValue());
+        alimentoAModificar.setDeleted('0');
+
+        // guardar en base de datos
+        alimentoService.guardarAlimento(alimentoAModificar);
+
+        // refrescar el Grid de la vista
+
+
         ListModelList modelo = new ListModelList(todosLosAlimentos);
         grid.setModel(modelo);
 
+        // cerrar el modal
         nuevoAlimento.detach();
 
 

@@ -60,18 +60,46 @@ public class AlimentoController extends SelectorComposer<Component> {
                 public void render(Row row, Object objetoDeModelo, int i) throws Exception {
                     final Alimento a = (Alimento) objetoDeModelo;
 
-                    Label etiquetaCategoria = new Label();
-                    etiquetaCategoria.setValue(a.getCategoria().getNombre());
+                    Label etiquetaCategoria = new Label("NA");
+                    if(a.getCategoria()!=null&&a.getCategoria().getNombre()!=null){
+                        etiquetaCategoria.setValue(a.getCategoria().getNombre());
+
+                    }
                     etiquetaCategoria.setParent(row);
 
-                    Label etiquetaNombre = new Label();
-                    etiquetaNombre.setValue(a.getNombre());
+                    Label etiquetaNombre = new Label("NA");
+                    if(a.getNombre()!=null) {
+                        etiquetaNombre.setValue(a.getNombre());
+                    }
                     etiquetaNombre.setParent(row);
 
-                    new Label(a.getNutrientes()).setParent(row);
-                    new Label(a.getPorcentajeDiario().toString()).setParent(row);
-                    new Label(a.getCalorias().toString()).setParent(row);
-                    new Label(a.getCantidad()).setParent(row);
+                    if(a.getNutrientes()!=null)new Label(a.getNutrientes()).setParent(row);
+                    else new Label("NA").setParent(row);
+                    if(a.getPorcentajeDiario()!=null)new Label(a.getPorcentajeDiario().toString()).setParent(row);
+                    else new Label("NA").setParent(row);
+                    if(a.getCalorias()!=null)new Label(a.getCalorias().toString()).setParent(row);
+                    else new Label("NA").setParent(row);
+                    if(a.getCantidad()!=null)new Label(a.getCantidad()).setParent(row);
+                    else new Label("NA").setParent(row);
+                    Button editarBtn = new Button("Editar");
+
+                    editarBtn.addEventListener("onClick",new EventListener() {
+                        @Override
+                        public void onEvent(Event event) throws Exception {
+                            HashMap parametros = new HashMap<String, Object>();
+
+                            parametros.put("listaDeAlimentos", todosLosAlimentos);
+                            parametros.put("grid",alimentosGrid);
+                            parametros.put("alimento",a);
+
+                            //crea una nueva ventana a partir de un archivo .zul
+                            Window window = (Window) Executions.createComponents(
+                                    "/vistas/alimentos/nuevoAlimento.zul", null, parametros);
+                            window.doModal();
+                        }
+                    });
+
+                    editarBtn.setParent(row);
 
                     Button eliminarBtn =new Button("Eliminar");
 
@@ -173,6 +201,7 @@ public class AlimentoController extends SelectorComposer<Component> {
     @Listen("onClick = #nuevoAlimentoBtn")
     public void showModal(Event e) {
         HashMap parametros = new HashMap<String, Object>();
+
         parametros.put("parametro", "este es mi parámetro");
         parametros.put("listaDeAlimentos", todosLosAlimentos);
         parametros.put("grid",alimentosGrid);

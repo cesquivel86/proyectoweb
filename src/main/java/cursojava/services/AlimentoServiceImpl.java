@@ -1,5 +1,6 @@
 package cursojava.services;
 
+import cursojava.dao.AlimentoDAOGenerico;
 import cursojava.entity.Categoria;
 import cursojava.dao.AlimentoDAO;
 import cursojava.dao.CategoriaDAO;
@@ -69,6 +70,6 @@ public class AlimentoServiceImpl implements AlimentoService{
 
     @Override
     public Alimento guardarAlimento(Alimento a) {
-        return alimentoDao.save(a);
+        return (Alimento) alimentoDao.save(a);
     }
 }
