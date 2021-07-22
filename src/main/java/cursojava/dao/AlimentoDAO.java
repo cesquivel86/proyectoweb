@@ -50,6 +50,11 @@ public class AlimentoDAO {
     }
 
     @Transactional
+    public <T> void update( T entity ){
+        em.merge( entity );
+    }
+
+    @Transactional
     public void delete(Alimento alimento) {
         Alimento r = get(alimento.getId());
         if(r != null) {

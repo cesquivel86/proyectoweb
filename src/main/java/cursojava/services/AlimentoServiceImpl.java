@@ -19,7 +19,7 @@ import java.util.List;
 public class AlimentoServiceImpl implements AlimentoService{
 
     @Autowired
-    AlimentoDAO alimentoDao;
+    AlimentoDAOGenerico alimentoDao;
 
     @Autowired
     CategoriaDAO categoriaDao;
@@ -71,5 +71,10 @@ public class AlimentoServiceImpl implements AlimentoService{
     @Override
     public Alimento guardarAlimento(Alimento a) {
         return (Alimento) alimentoDao.save(a);
+    }
+
+    @Override
+    public void actualizar(Alimento a) {
+        alimentoDao.update(a);
     }
 }

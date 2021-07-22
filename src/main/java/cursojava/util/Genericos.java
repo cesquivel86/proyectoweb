@@ -15,7 +15,8 @@ public class Genericos {
 
         //Obtenga el valor en iOb.
         //Fíjese que no se necesita una conversión
-        int v=iOb.getOb();
+
+        int v=  iOb.getOb();
         System.out.println("Valor: "+v);
         System.out.println();
 

@@ -4,12 +4,13 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "alimento")
 @SQLDelete(sql = "UPDATE alimento SET deleted = '1' WHERE id = ?")
 @Where(clause = "deleted <> '1'")
-public class Alimento {
+public class Alimento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;

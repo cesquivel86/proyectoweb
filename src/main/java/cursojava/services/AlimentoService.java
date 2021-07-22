@@ -20,4 +20,6 @@ public interface AlimentoService {
     public void eliminarAlimentoDesdeTabla(Alimento a);
 
     public Alimento guardarAlimento(Alimento a);
+
+    public void actualizar(Alimento a);
 }

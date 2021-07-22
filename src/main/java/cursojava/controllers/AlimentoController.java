@@ -83,6 +83,8 @@ public class AlimentoController extends SelectorComposer<Component> {
                     else new Label("NA").setParent(row);
                     Button editarBtn = new Button("Editar");
 
+                    Hbox contenedorDeBotones = new Hbox();
+
                     editarBtn.addEventListener("onClick",new EventListener() {
                         @Override
                         public void onEvent(Event event) throws Exception {
@@ -99,7 +101,7 @@ public class AlimentoController extends SelectorComposer<Component> {
                         }
                     });
 
-                    editarBtn.setParent(row);
+                    editarBtn.setParent(contenedorDeBotones);
 
                     Button eliminarBtn =new Button("Eliminar");
 
@@ -129,9 +131,11 @@ public class AlimentoController extends SelectorComposer<Component> {
                     });
 
 
-                    eliminarBtn.setParent(row);
+                    eliminarBtn.setParent(contenedorDeBotones);
+                    contenedorDeBotones.setParent(row);
                 }
             });
+
 
             List<Categoria> categorias = alimentoService.obtenerCategoriasPorBaseDeDatos();
             ListModelList categoriasModel = new ListModelList();

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Scope( BeanDefinition.SCOPE_PROTOTYPE )
-public class AlimentoDAOGenerico extends AbstractJpaDao{
+public class AlimentoDAOGenerico extends DaoGenerico{
 
     public AlimentoDAOGenerico(){
         this.setClazz(cursojava.entity.Alimento.class);
@@ -20,7 +20,7 @@ public class AlimentoDAOGenerico extends AbstractJpaDao{
 
     @Transactional(readOnly = true)
     public List<Alimento> getByCategory(Categoria category) {
-        Query query = this.entityManager.createQuery("SELECT a FROM Alimento a WHERE a.categoria.id="+category.getId());
+        Query query = this.em.createQuery("SELECT a FROM Alimento a WHERE a.categoria.id="+category.getId());
         List<Alimento> result = query.getResultList();
         return result;
     }

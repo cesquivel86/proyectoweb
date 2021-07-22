@@ -68,10 +68,13 @@ public class NuevoAlimentoController extends SelectorComposer<Component> {
     }
     @Listen("onClick=#guardarBtn")
     public void guardarAlimento(){
+
+        boolean esNuevo=false;
         //crear nuevo objeto
         if(alimentoAModificar==null) {
             alimentoAModificar = new Alimento();
             todosLosAlimentos.add(alimentoAModificar);
+            esNuevo=true;
         }
 
         // cargar Objeto
@@ -83,8 +86,11 @@ public class NuevoAlimentoController extends SelectorComposer<Component> {
         alimentoAModificar.setDeleted('0');
 
         // guardar en base de datos
-        alimentoService.guardarAlimento(alimentoAModificar);
-
+        if(esNuevo) {
+            alimentoService.guardarAlimento(alimentoAModificar);
+        }else{
+            alimentoService.actualizar(alimentoAModificar);
+        }
         // refrescar el Grid de la vista
 
 
