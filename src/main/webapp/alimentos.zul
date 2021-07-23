@@ -29,8 +29,8 @@
         <columns>
             <column width="20%">Categoría</column>
             <column width="20%">Nombre</column>
-            <column width="20%">Nutrientes</column>
-            <column width="10%">% Diario</column>
+            <column width="20%">M. Mayoritario</column>
+            <column width="10%">M. Minoritario</column>
             <column width="10%">Calorias</column>
             <column width="10%">Cantidad</column>
             <column width="10%">Acciones</column>

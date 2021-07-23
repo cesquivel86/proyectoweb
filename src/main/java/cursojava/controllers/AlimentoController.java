@@ -73,9 +73,9 @@ public class AlimentoController extends SelectorComposer<Component> {
                     }
                     etiquetaNombre.setParent(row);
 
-                    if(a.getNutrientes()!=null)new Label(a.getNutrientes()).setParent(row);
+                    if(a.getMacroNutrienteMayoritario()!=null)new Label(a.getMacroNutrienteMayoritario().toString()).setParent(row);
                     else new Label("NA").setParent(row);
-                    if(a.getPorcentajeDiario()!=null)new Label(a.getPorcentajeDiario().toString()).setParent(row);
+                    if(a.getMacroNutrienteMinoritario()!=null)new Label(a.getMacroNutrienteMinoritario().toString()).setParent(row);
                     else new Label("NA").setParent(row);
                     if(a.getCalorias()!=null)new Label(a.getCalorias().toString()).setParent(row);
                     else new Label("NA").setParent(row);

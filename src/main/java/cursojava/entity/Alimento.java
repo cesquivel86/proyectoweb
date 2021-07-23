@@ -1,5 +1,6 @@
 package cursojava.entity;
 
+import cursojava.util.MacroNutriente;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -27,6 +28,12 @@ public class Alimento implements Serializable {
     private Integer calorias;
     @Column
     private String cantidad;
+
+    @Enumerated // anotación para mapear Enums
+    private MacroNutriente macroNutrienteMayoritario;
+
+    @Enumerated(EnumType.STRING)
+    private MacroNutriente macroNutrienteMinoritario;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -98,5 +105,21 @@ public class Alimento implements Serializable {
 
     public void setDeleted(char deleted) {
         this.deleted = deleted;
+    }
+
+    public MacroNutriente getMacroNutrienteMayoritario() {
+        return macroNutrienteMayoritario;
+    }
+
+    public void setMacroNutrienteMayoritario(MacroNutriente macroNutrienteMayoritario) {
+        this.macroNutrienteMayoritario = macroNutrienteMayoritario;
+    }
+
+    public MacroNutriente getMacroNutrienteMinoritario() {
+        return macroNutrienteMinoritario;
+    }
+
+    public void setMacroNutrienteMinoritario(MacroNutriente macroNutrienteMinoritario) {
+        this.macroNutrienteMinoritario = macroNutrienteMinoritario;
     }
 }

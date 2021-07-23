@@ -3,6 +3,7 @@ package cursojava.controllers;
 import cursojava.entity.Alimento;
 import cursojava.entity.Categoria;
 import cursojava.services.AlimentoService;
+import cursojava.util.MacroNutriente;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
@@ -84,6 +85,8 @@ public class NuevoAlimentoController extends SelectorComposer<Component> {
         alimentoAModificar.setNutrientes(nNutrientesTb.getValue());
         alimentoAModificar.setCantidad(nCantidadTb.getValue());
         alimentoAModificar.setDeleted('0');
+        alimentoAModificar.setMacroNutrienteMayoritario(MacroNutriente.PROTEINA);
+        alimentoAModificar.setMacroNutrienteMinoritario(MacroNutriente.CARBOHIDRATO);
 
         // guardar en base de datos
         if(esNuevo) {
