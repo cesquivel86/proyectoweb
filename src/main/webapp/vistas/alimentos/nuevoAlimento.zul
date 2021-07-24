@@ -1,3 +1,5 @@
+
+
 <window id="nuevoAlimento" title="Alta Alimento" border="normal" width="660px"
         apply="cursojava.controllers.NuevoAlimentoController"
         position="center,center" closable="true"
@@ -14,6 +16,34 @@
                     </combobox>
 
                 </row>
+                <row>
+                    <label value="M. Nut Mayoritario" />
+                    <combobox id="cbMacroMayoritario" readonly="true"  use="cursojava.customComponents.MacronutrientesCombobox">
+                    </combobox>
+                </row>
+
+                <row>
+                    <label value="M. Nut Minoritario" />
+                    <combobox id="cbMacroMinoritario" readonly="true"  use="cursojava.customComponents.EnumCombobox"
+                              miEnumerable="cursojava.util.MacroNutriente">
+                    </combobox>
+                </row>
+
+
+                <row>
+                    <label value="Equipos de Futbol" />
+                    <combobox id="cbEquiposDeFutbol" readonly="true"  use="cursojava.customComponents.EnumCombobox"
+                              miEnumerable="cursojava.util.EquipoDeFutbol">
+                    </combobox>
+                </row>
+
+
+                <row>
+                    <label value="Categoría 2" />
+                    <combobox id="cbCategoria2" readonly="true"  use="cursojava.customComponents.CategoriaCombobox">
+                    </combobox>
+                </row>
+
                 <row>
                     <label value="Nombre" />
                     <textbox id="nNombreTb"></textbox>
@@ -32,3 +62,4 @@
         <button id="closeBtn" hflex="1" label="cerrar"/>
     </vlayout>
 </window>
+

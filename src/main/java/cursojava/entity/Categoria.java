@@ -56,4 +56,11 @@ public class Categoria {
     public void setDeleted(char deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
+
+
 }

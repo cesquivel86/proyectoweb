@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language-addon>
+    <addon-name>custom</addon-name>
+    <language-name>xul/html</language-name>
+
+    <component>
+        <component-name>categoriaCombobox</component-name>
+        <extends>combobox</extends>
+        <component-class>cursojava.customComponents.CaCb</component-class>
+    </component>
+
+</language-addon>

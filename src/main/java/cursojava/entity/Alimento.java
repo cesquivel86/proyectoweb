@@ -122,4 +122,5 @@ public class Alimento implements Serializable {
     public void setMacroNutrienteMinoritario(MacroNutriente macroNutrienteMinoritario) {
         this.macroNutrienteMinoritario = macroNutrienteMinoritario;
     }
+
 }

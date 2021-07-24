@@ -1,5 +1,6 @@
 package cursojava.controllers;
 
+import cursojava.adapters.AlimentoAdapter;
 import cursojava.entity.Categoria;
 import cursojava.entity.Alimento;
 import cursojava.services.AlimentoService;
@@ -50,7 +51,7 @@ public class AlimentoController extends SelectorComposer<Component> {
             System.out.println("bean cargado");
 
             todosLosAlimentos = new ArrayList<Alimento>(alimentoService.obtenerTodos());
-            ListModelList<Alimento> modelo = new ListModelList<Alimento>(todosLosAlimentos);
+            ListModelList<AlimentoAdapter> modelo = new ListModelList<AlimentoAdapter>(alimentoService.getAdaptadores(todosLosAlimentos));
             alimentosGrid.setModel(modelo);
 
 
@@ -58,7 +59,8 @@ public class AlimentoController extends SelectorComposer<Component> {
             alimentosGrid.setRowRenderer(new RowRenderer<Object>() {
                 @Override
                 public void render(Row row, Object objetoDeModelo, int i) throws Exception {
-                    final Alimento a = (Alimento) objetoDeModelo;
+                    final AlimentoAdapter aAdapter = (AlimentoAdapter) objetoDeModelo;
+                    Alimento a = aAdapter.getAlimento();
 
                     Label etiquetaCategoria = new Label("NA");
                     if(a.getCategoria()!=null&&a.getCategoria().getNombre()!=null){
@@ -73,12 +75,12 @@ public class AlimentoController extends SelectorComposer<Component> {
                     }
                     etiquetaNombre.setParent(row);
 
-                    if(a.getMacroNutrienteMayoritario()!=null)new Label(a.getMacroNutrienteMayoritario().toString()).setParent(row);
+                    if(aAdapter.getMacronutrientes()!=null)new Label(aAdapter.getMacronutrientes()).setParent(row);
                     else new Label("NA").setParent(row);
-                    if(a.getMacroNutrienteMinoritario()!=null)new Label(a.getMacroNutrienteMinoritario().toString()).setParent(row);
-                    else new Label("NA").setParent(row);
+
                     if(a.getCalorias()!=null)new Label(a.getCalorias().toString()).setParent(row);
                     else new Label("NA").setParent(row);
+
                     if(a.getCantidad()!=null)new Label(a.getCantidad()).setParent(row);
                     else new Label("NA").setParent(row);
                     Button editarBtn = new Button("Editar");

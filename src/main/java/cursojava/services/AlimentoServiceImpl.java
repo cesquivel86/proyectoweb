@@ -1,5 +1,6 @@
 package cursojava.services;
 
+import cursojava.adapters.AlimentoAdapter;
 import cursojava.dao.AlimentoDAOGenerico;
 import cursojava.entity.Categoria;
 import cursojava.dao.AlimentoDAO;
@@ -76,5 +77,10 @@ public class AlimentoServiceImpl implements AlimentoService{
     @Override
     public void actualizar(Alimento a) {
         alimentoDao.update(a);
+    }
+
+    @Override
+    public List<AlimentoAdapter> getAdaptadores(List<Alimento> alimentos) {
+        return AlimentoAdapter.obtenerPorLista(alimentos);
     }
 }

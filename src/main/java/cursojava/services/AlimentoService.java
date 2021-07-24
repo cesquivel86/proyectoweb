@@ -1,5 +1,6 @@
 package cursojava.services;
 
+import cursojava.adapters.AlimentoAdapter;
 import cursojava.entity.Alimento;
 import cursojava.entity.Categoria;
 
@@ -22,4 +23,6 @@ public interface AlimentoService {
     public Alimento guardarAlimento(Alimento a);
 
     public void actualizar(Alimento a);
+
+    public List<AlimentoAdapter> getAdaptadores(List<Alimento> alimentos);
 }
